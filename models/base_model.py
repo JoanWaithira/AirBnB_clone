@@ -6,12 +6,20 @@ from datetime import datetime
 import uuid
 
 class BaseModel:
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         ''' Initializes an instance of BaseModel. '''
-        current_time = datetime.now()
-        self.id = str(uuid.uuid4())
-        self.created_at = current_time
-        self.updated_at = current_time
+        if len(kwargs) == 0:
+            current_time = datetime.now()
+            self.id = str(uuid.uuid4())
+            self.created_at = current_time
+            self.updated_at = current_time
+        else:
+            for key, val in kwargs.items():
+                if key != '__class__':
+                    if key != 'created_at' and key != 'updated_at':
+                        setattr(self, key, val)
+                    else:
+                        setattr(self, key, datetime.fromisoformat(val))
         return
 
     def __str__(self):
