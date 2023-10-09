@@ -23,3 +23,8 @@ class BaseModel:
             The string representation of the object.
         '''
        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+
+   def save(self):
+       ''' Updates the updated_at attribute with the current_time. '''
+       self.updated_at = datetime.now()
+       return
