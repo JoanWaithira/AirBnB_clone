@@ -13,3 +13,13 @@ class BaseModel:
         self.created_at = current_time
         self.updated_at = current_time
         return
+
+    def __str__(self):
+        '''
+        Creates the unofficial string representation of a BaseModel instance.
+        Format: [<class name>] (<self.id>) <self.__dict__>
+
+        Returns:
+            The string representation of the object.
+        '''
+       return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
