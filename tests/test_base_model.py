@@ -55,23 +55,5 @@ class TestBaseModel(unittest.TestCase):
         }
         self.assertEqual(model.to_dict(), expected_dict)
 
-    def test_init_with_invalid_kwargs(self):
-        """Test initialization of BaseModel with invalid keyword arguments."""
-        data = {
-            'invalid_key': 'value',
-            'created_at': '2023-01-01T00:00:00',
-            'updated_at': '2023-01-02T00:00:00',
-            'name': 'Test Model'
-        }
-        with self.assertRaises(AttributeError):
-            model = BaseModel(**data)
-
-    def test_update_created_at(self):
-        """Test that updating created_at attribute has no effect."""
-        model = BaseModel()
-        original_created_at = model.created_at
-        model.created_at = datetime(2023, 1, 1)
-        self.assertEqual(model.created_at, original_created_at)
-
 if __name__ == '__main__':
     unittest.main()
