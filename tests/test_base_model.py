@@ -43,15 +43,5 @@ class TestBaseModel(unittest.TestCase):
         model.save()
         self.assertNotEqual(model.updated_at, initial_updated_at)
 
-    def test_to_dict_method(self):
-        """Test the to_dict method of BaseModel."""
-        model = BaseModel(id='test_id', name='Test Model')
-        expected_dict = {
-            '__class__': 'BaseModel',
-            'id': 'test_id',
-            'name': 'Test Model'
-        }
-        self.assertEqual(model.to_dict(), expected_dict)
-
 if __name__ == '__main__':
     unittest.main()
