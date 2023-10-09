@@ -29,6 +29,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(model.created_at, datetime.fromisoformat('2023-01-01T00:00:00'))
         self.assertEqual(model.updated_at, datetime.fromisoformat('2023-01-02T00:00:00'))
         self.assertEqual(model.name, 'Test Model')
+
     def test_str_representation(self):
         """Test the __str__ method of BaseModel."""
         model = BaseModel(id='test_id', name='Test Model')
@@ -53,6 +54,7 @@ class TestBaseModel(unittest.TestCase):
             'name': 'Test Model'
         }
         self.assertEqual(model.to_dict(), expected_dict)
+
     def test_init_with_invalid_kwargs(self):
         """Test initialization of BaseModel with invalid keyword arguments."""
         data = {
