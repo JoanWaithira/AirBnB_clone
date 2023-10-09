@@ -28,3 +28,19 @@ class BaseModel:
        ''' Updates the updated_at attribute with the current_time. '''
        self.updated_at = datetime.now()
        return
+
+   def to_dict(self):
+       '''
+       Creates a dictionary containing all keys/values of __dict__ of the
+       instance.
+       A key __class__ is added to this dictionary with the class name of the
+       object.
+
+       Returns:
+            Dictionary representations of the BaseModel instance.
+        '''
+        dictionary = self.__dict__
+        dictionary['__class__'] = self.__class__.__name__
+        dictionary['updated_at'] = dictionary['updated_at'].isoformat()
+        dictionary['created_at'] = dictionary['created_at'].isoformat()
+        return dictionary
