@@ -31,21 +31,21 @@ class BaseModel:
         Returns:
             The string representation of the object.
         '''
-       return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
-   def save(self):
-       ''' Updates the updated_at attribute with the current_time. '''
-       self.updated_at = datetime.now()
-       return
+    def save(self):
+        ''' Updates the updated_at attribute with the current_time. '''
+        self.updated_at = datetime.now()
+        return
 
-   def to_dict(self):
-       '''
-       Creates a dictionary containing all keys/values of __dict__ of the
-       instance.
-       A key __class__ is added to this dictionary with the class name of the
-       object.
+    def to_dict(self):
+        '''
+        Creates a dictionary containing all keys/values of __dict__ of the
+        instance.
+        A key __class__ is added to this dictionary with the class name of the
+        object.
 
-       Returns:
+        Returns:
             Dictionary representations of the BaseModel instance.
         '''
         dictionary = self.__dict__
