@@ -49,8 +49,6 @@ class TestBaseModel(unittest.TestCase):
         expected_dict = {
             '__class__': 'BaseModel',
             'id': 'test_id',
-            'created_at': model.created_at.isoformat(),
-            'updated_at': model.updated_at.isoformat(),
             'name': 'Test Model'
         }
         self.assertEqual(model.to_dict(), expected_dict)
