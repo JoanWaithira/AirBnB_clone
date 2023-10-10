@@ -14,3 +14,13 @@ class FileStorage:
     def __init__(self):
         '''Initializes new FileStorage instance.'''
         return
+
+    def all(self):
+        '''
+        Accessor of the class attribute __objects.
+
+        Returns:
+            The dictionary __objects.
+        '''
+        return self.__objects
+
