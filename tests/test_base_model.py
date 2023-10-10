@@ -23,6 +23,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(model.id, str)
         self.assertIsInstance(model.created_at, datetime)
         self.assertIsInstance(model.updated_at, datetime)
+        return
 
     def test_init_with_kwargs(self):
         """Test initialization of BaseModel with keyword arguments."""
@@ -37,12 +38,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(model.created_at, datetime.fromisoformat('2023-01-01T00:00:00'))
         self.assertEqual(model.updated_at, datetime.fromisoformat('2023-01-02T00:00:00'))
         self.assertEqual(model.name, 'Test Model')
+        return
 
     def test_str_representation(self):
         """Test the __str__ method of BaseModel."""
         model = BaseModel(id='test_id', name='Test Model')
         expected_str = "[BaseModel] (test_id) {'id': 'test_id', 'name': 'Test Model'}"
         self.assertEqual(str(model), expected_str)
+        return
 
     def test_save_method(self):
         """Test the save method of BaseModel."""
@@ -50,6 +53,7 @@ class TestBaseModel(unittest.TestCase):
         initial_updated_at = model.updated_at
         model.save()
         self.assertNotEqual(model.updated_at, initial_updated_at)
+        return
 
 if __name__ == '__main__':
     unittest.main()
