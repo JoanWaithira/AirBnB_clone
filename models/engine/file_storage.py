@@ -49,3 +49,16 @@ class FileStorage:
         with open(self.__file_path, "w+", encoding="utf-8") as file:
             json.dump(dictionary, file)
         return
+
+    def reload(self):
+        '''
+        Deserializes the stored instances from __file_path and reloads them
+        as instances.
+        '''
+        try:
+            with open(__file_path, "r", encoding="utf-8") as file:
+                dictionary = json.load(file)
+                for key, value in dictionary.items():
+                    self.__objects[key] = eval(value['__class__']) (**value)
+        except Exception:
+            pass
