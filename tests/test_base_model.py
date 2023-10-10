@@ -2,9 +2,17 @@ import unittest
 from models.base_model import BaseModel
 from datetime import datetime
 import json
+import pycodestyle
 
 
 class TestBaseModel(unittest.TestCase):
+    ''' Tests all features of BaseModel class. '''
+    def test_pycodestyle(self):
+        '''Tests if the base_model conforms to pycodestyle.'''
+        style = pycodestyle.StyleGuide(quiet=True)
+        result = style.check_files(["models/base_model.py"])
+        self.assertEqual(result.total_errors, 0, "Non compliance detected.")
+        return
 
     def test_init_default(self):
         """Testing the default initialisation of Base Model."""
