@@ -33,6 +33,7 @@ class HBNBCommand(cmd.Cmd):
         '''
         if not classname:
             print("** class name missing **")
+            return False
         try:
             new_object = eval(classname)
             print(new_object.id)
@@ -41,6 +42,32 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         return
 
+    def do_show(self, raw_string):
+        '''
+        Print string representation of an instance based on class name and id.
+        Usage: $ show <classname> <id>
+
+        Exceptions:
+            If class name is missing, ** class name missing ** is printed.
+            If class name doesn't exist, ** class doesn't exist ** is printed.
+            If id is missing, ** instance id missing ** is printed.
+            If class name/id pair doesn't exist, ** no instance found **
+                is printed.
+
+        Args:
+            raw_string (str):String containing classname, and id.
+        '''
+        if not raw_string:
+            print("** class name is missing **")
+            return False
+        inputs = raw_string.split()
+        if not inputs[1]:
+            print("** instance id missing **")
+            return False
+        if inputs[0] != "BaseModel":
+            print("** class doesn't exist **")
+            return False
+        
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
