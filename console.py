@@ -3,6 +3,7 @@
 ''' This module defines the actual console for the project.'''
 
 import cmd
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -16,6 +17,28 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line=None):
         ''' Quit command to exit the program. '''
         return True
+
+    def do_create(self, classname):
+        '''
+        Creates new BaseModel object, saves it, and prints the id.
+
+        Args:
+            line (str): Name of the object class.
+
+        Errors:
+            If the class name is absent, ** class name missing ** is printed.
+            If the named class does not exist, ** class doesn't exist ** is
+                printed.
+        '''
+        if not classname:
+            print("** class name missing **")
+        try:
+            newObject = eval(classname)
+            print(newObject.id)
+            newObject.save()
+        except NameError:
+            print("** class doesn't exist **")
+        return
 
 
 if __name__ == "__main__":
