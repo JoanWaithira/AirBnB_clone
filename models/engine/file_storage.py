@@ -24,3 +24,16 @@ class FileStorage:
         '''
         return self.__objects
 
+    def new(self, obj):
+        '''
+        Enters obj into the __objects dictionary.
+
+        Format: <obj class name>.id
+
+        Args:
+            obj : Object to be stored into the __objects dictionary.
+        '''
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+
+        self.__objects[key] = obj
+        return
