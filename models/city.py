@@ -14,5 +14,6 @@ class City(BaseModel):
         name(str) : The name of the city
 
         """
+        super().__init__(*args, **kwargs)
         state_id = ""
         name = ""
