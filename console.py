@@ -21,9 +21,10 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, classname):
         '''
         Creates new BaseModel object, saves it, and prints the id.
+        Usage: $ create <classname>
 
         Args:
-            line (str): Name of the object class.
+            classname (str): Name of the object class.
 
         Errors:
             If the class name is absent, ** class name missing ** is printed.
