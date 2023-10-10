@@ -8,4 +8,9 @@ instances to and fro json.
 import json
 
 class FileStorage:
-    pass
+    __file_path = "file.json"
+    __objects = {}
+
+    def __init__(self):
+        '''Initializes new FileStorage instance.'''
+        return
