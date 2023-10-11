@@ -45,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return False
         try:
-            new_object = eval(classname)
+            new_object = eval(classname)()
             print(new_object.id)
             new_object.save()
         except NameError:
