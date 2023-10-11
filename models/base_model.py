@@ -23,7 +23,6 @@ class BaseModel:
                         setattr(self, key, val)
                     else:
                         setattr(self, key, datetime.fromisoformat(val))
-        return
 
     def __str__(self):
         '''
@@ -39,7 +38,6 @@ class BaseModel:
         ''' Updates the updated_at attribute with the current_time. '''
         self.updated_at = datetime.now()
         models.storage.save()
-        return
 
     def to_dict(self):
         '''
