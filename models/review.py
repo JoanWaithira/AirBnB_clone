@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""This module defines the reviw class that inherits from the BaseModel class"""
+
+"""This module defines class review that inherits from class BaseModel."""
+
+from models.base_model import BaseModel
+
 
 class Review(BaseModel):
     """The review class inherits from BaseModel"""

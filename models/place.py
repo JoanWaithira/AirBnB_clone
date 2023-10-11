@@ -2,6 +2,7 @@
 """This module defines the place class that inherits from the base model"""
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
     """ The place inherits from BaseModel"""
     def __init__(self, *args, **kwargs):

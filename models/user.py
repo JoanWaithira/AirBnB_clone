@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """ This model defines the user class and is inheriting from Base model"""
 
-from models.basemodel import BaseModel
+from models.base_model import BaseModel
+
 
 class User(BaseModel):
     """
@@ -14,8 +15,8 @@ class User(BaseModel):
     last_name (str): The last name of the user
 
     """
-    def __init__(*args, **kwargs)
-    self.email = ""
-    self.password = ""
-    self.first_name = ""
-    self.last_name = ""
+    def __init__(*args, **kwargs):
+        self.email = ""
+        self.password = ""
+        self.first_name = ""
+        self.last_name = ""
