@@ -50,7 +50,6 @@ class HBNBCommand(cmd.Cmd):
             new_object.save()
         except NameError:
             print("** class doesn't exist **")
-        return
 
     def do_show(self, raw_string):
         '''
@@ -83,7 +82,6 @@ class HBNBCommand(cmd.Cmd):
         except Exception:
             print("** no instance found **")
             return False
-        return
 
     def do_destroy(self, raw_string):
         '''
@@ -114,7 +112,6 @@ class HBNBCommand(cmd.Cmd):
         except Exception:
             print("** no instance found **")
             return False
-        return
 
     def do_all(self, classname=None):
         '''
@@ -132,7 +129,6 @@ class HBNBCommand(cmd.Cmd):
                 if instance.__class__.__name__ == classname:
                     instance_list.append(instance.__str__())
         print(instance_list)
-        return
 
     @staticmethod
     def is_float(string):
@@ -151,7 +147,6 @@ class HBNBCommand(cmd.Cmd):
             return True
         except ValueError:
             return False
-
 
     def do_update(self, arg_string):
         '''
@@ -199,8 +194,7 @@ class HBNBCommand(cmd.Cmd):
         elif is_float(inputs[3]):
             inputs[3] = float(inputs[3])
         setattr(storage.all()[instance], data[2], data[3])
-        return
-
+        storage.save()
 
 
 if __name__ == "__main__":
