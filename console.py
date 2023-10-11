@@ -153,7 +153,7 @@ class HBNBCommand(cmd.Cmd):
             return False
 
 
-    def update(self, arg_string):
+    def do_update(self, arg_string):
         '''
         Changes an attribute of an instance based on classname and id.
         Usage: $ update <class name> <id> <attribute name> "<attribute values>"
