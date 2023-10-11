@@ -6,6 +6,14 @@ instances to and fro json.
 '''
 
 import json
+from models.base_model import BaseModel
+from models.user import User
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class FileStorage:
@@ -37,7 +45,6 @@ class FileStorage:
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
 
         self.__objects[key] = obj
-        return
 
     def save(self):
         '''
@@ -49,7 +56,6 @@ class FileStorage:
             dictionary[key] = self.__objects[key].to_dict()
         with open(self.__file_path, "w+", encoding="utf-8") as file:
             json.dump(dictionary, file)
-        return
 
     def reload(self):
         '''
@@ -63,4 +69,3 @@ class FileStorage:
                     self.__objects[key] = eval(value['__class__'])(**value)
         except Exception:
             pass
-        return
