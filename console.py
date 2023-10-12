@@ -30,11 +30,14 @@ class HBNBCommand(cmd.Cmd):
         Supported commands:
             all()
             count()
+            show()
+            destroy()
         '''
         functions = {
                 "all": self.do_all,
                 "count": self.do_count,
-                "show": self.do_show}
+                "show": self.do_show,
+                "destroy": self.do_destroy}
         regex = r"(.*)\.(.*)\((.*)\)"
 
         if re.search(regex, line):
