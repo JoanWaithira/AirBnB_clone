@@ -50,6 +50,10 @@ class HBNBCommand(cmd.Cmd):
                     self.dict_update(inputs[1], line)
                 else:
                     functions[inputs[0]](' '.join(inputs[1:]))
+            else:
+                print("*** Unknown syntax: {line}")
+        else:
+            print(f"*** Unknown syntax: {line}")
 
     def do_EOF(self, line=None):
         ''' Exits the console when EOF is encountered. '''
