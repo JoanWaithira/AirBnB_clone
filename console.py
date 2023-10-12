@@ -18,7 +18,7 @@ from models.state import State
 class HBNBCommand(cmd.Cmd):
     ''' This class creates the project console and defines it's behaviors. '''
     prompt = '(hbnb)'
-    _classes = {"State", "User", "BaseModel", "Place", "Review", "Amenity"}
+    _classes = ["State", "User", "BaseModel", "Place", "Review", "Amenity"]
 
     def do_EOF(self, line=None):
         ''' Exits the console when EOF is encountered. '''
