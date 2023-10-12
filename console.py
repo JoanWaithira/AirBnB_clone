@@ -68,7 +68,7 @@ class HBNBCommand(cmd.Cmd):
         '''
         if not raw_string:
             print("** class name is missing **")
-            return False
+            return None
         inputs = shlex.split(raw_string)
         if not inputs[1]:
             print("** instance id missing **")
