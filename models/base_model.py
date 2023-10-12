@@ -49,7 +49,7 @@ class BaseModel:
         Returns:
             Dictionary representations of the BaseModel instance.
         '''
-        dictionary = self.__dict__
+        dictionary = self.__dict__.copy()
         dictionary['__class__'] = self.__class__.__name__
         dictionary['updated_at'] = dictionary['updated_at'].isoformat()
         dictionary['created_at'] = dictionary['created_at'].isoformat()
