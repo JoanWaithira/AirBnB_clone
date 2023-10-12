@@ -91,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name is missing **")
             return None
         inputs = shlex.split(raw_string)
-        if len (inputs) < 2:
+        if len(inputs) < 2:
             print("** instance id missing **")
             return None
         if inputs[0] not in self._classes:
@@ -192,7 +192,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         arg_string = arg_string.replace(',', "")
         inputs = shlex.split(arg_string)
-        
+
         if inputs[0] not in self._classes:
             print("** class doesn't exist **")
             return False
@@ -222,6 +222,22 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
         except (ValueError, TypeError):
             return False
+
+    def do_count(self, classname):
+        '''
+        Counts the number of active instances of a class.
+        Usage: $ count <class name>
+        '''
+        count = 0
+
+        if classname not in self._classes:
+            print("** class doesn't exist **")
+            return False
+
+        for instance in storage.all().values():
+            if classname == instance.__class__.__name__:
+                count += 1
+        print(f"{count}")
 
 
 if __name__ == "__main__":
