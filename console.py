@@ -175,7 +175,7 @@ class HBNBCommand(cmd.Cmd):
         if inputs[0] not in self._classes:
             print("** class doesn't exist **")
             return False
-        if len(inputs) < 2:
+        if len(inputs) == 1:
             print("** instance id missing **")
             return False
         instance = f"{inputs[0]}.{inputs[1]}"
@@ -189,12 +189,18 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return False
 
-        if inputs[3].isnumeric():
-            inputs[3] = int(inputs[3])
-        elif is_float(inputs[3]):
-            inputs[3] = float(inputs[3])
-        setattr(storage.all()[instance], data[2], data[3])
-        storage.save()
+        try:
+            if inputs[3].isnumeric():
+                inputs[3] = int(inputs[3])
+            else:
+                try:
+                    inputs[3] = float(inputs[3])
+                except ValueError:
+                    inputs[3] = str(inputs[3])
+            setattr(storage.all()[instance], data[2], data[3])
+            storage.save()
+        except (ValueError, TypeError):
+            return False
 
 
 if __name__ == "__main__":
