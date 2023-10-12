@@ -32,6 +32,7 @@ class HBNBCommand(cmd.Cmd):
             count()
             show()
             destroy()
+            update() # Even with dictionary form attributes.
         '''
         functions = {
                 "all": self.do_all,
@@ -45,8 +46,10 @@ class HBNBCommand(cmd.Cmd):
             inputs = re.sub(regex, r"\2 \1 \3", line)
             inputs = shlex.split(inputs)
             if inputs[0] in functions.keys():
-                print(' '.join(inputs[1:]))
-                functions[inputs[0]](' '.join(inputs[1:]))
+                if inputs[0] == "update" and "{" in line and "}" in line:
+                    self.dict_update(inputs[1], line)
+                else:
+                    functions[inputs[0]](' '.join(inputs[1:]))
 
     def do_EOF(self, line=None):
         ''' Exits the console when EOF is encountered. '''
@@ -246,6 +249,23 @@ class HBNBCommand(cmd.Cmd):
             if classname == instance.__class__.__name__:
                 count += 1
         print(f"{count}")
+
+    def dict_update(self, classname, line):
+        '''
+        Performs the update method on an item passed with a dictionary
+            of attribute/value pairs.
+
+        Args:
+            classname (str): Name of the class of object to be updated.
+            line (str): Unprocessed string as recieved from the console.
+        '''
+        dictionary = re.findall(r"({.*})", line)
+        dictionary[0] = dictionary[0].replace("\'", "\"")
+        inputs = json.loads(dictionary[0])
+        grouped_strings = re.findall("(\".*?\")", line)
+        id_string = grouped_strings[0].replace("\"", "")
+        for key, value in inputs.items():
+            self.do_update(classname + " " + id_string + key + " " + str(val))
 
 
 if __name__ == "__main__":
