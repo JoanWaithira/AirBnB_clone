@@ -37,13 +37,15 @@ class HBNBCommand(cmd.Cmd):
                 "all": self.do_all,
                 "count": self.do_count,
                 "show": self.do_show,
-                "destroy": self.do_destroy}
+                "destroy": self.do_destroy,
+                "update": self.do_update}
         regex = r"(.*)\.(.*)\((.*)\)"
 
         if re.search(regex, line):
             inputs = re.sub(regex, r"\2 \1 \3", line)
             inputs = shlex.split(inputs)
             if inputs[0] in functions.keys():
+                print(' '.join(inputs[1:]))
                 functions[inputs[0]](' '.join(inputs[1:]))
 
     def do_EOF(self, line=None):
@@ -96,18 +98,17 @@ class HBNBCommand(cmd.Cmd):
             print("** class name is missing **")
             return None
         inputs = shlex.split(raw_string)
-        if len(inputs) < 2:
+        if len(inputs) == 1:
             print("** instance id missing **")
             return None
         if inputs[0] not in self._classes:
             print("** class doesn't exist **")
             return False
         instance = f"{inputs[0]}.{inputs[1]}"
-        try:
-            print(storage.all()[instance])
-        except Exception:
+        if instance not in storage.all():
             print("** no instance found **")
             return False
+        print(storage.all()[instance])
 
     def do_destroy(self, raw_string):
         '''
