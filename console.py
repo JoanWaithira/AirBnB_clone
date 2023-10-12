@@ -20,6 +20,27 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
     _classes = ["State", "User", "BaseModel", "Place", "Review", "Amenity"]
 
+    def default(self, line):
+        '''
+        This method handles unknown command syntaxes.
+        Here it's meant to handle commands of the format:
+            $ <class name>.<method>
+        for pre-specified commands.
+
+        Supported commands:
+            all()
+        '''
+        functions = {"all": self.do_all}
+        regex = r"(.*)\.(.*)\((.*)\)"
+        
+        if re.search(regex, line):
+            inputs = re.sub(regex, r"\2 \1", line)
+            inputs = shlex.split(inputs)
+            if inputs[0] == "all":
+                print(inputs)
+                self.do_all(inputs[1])
+        
+
     def do_EOF(self, line=None):
         ''' Exits the console when EOF is encountered. '''
         return True
