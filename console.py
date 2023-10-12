@@ -175,7 +175,7 @@ class HBNBCommand(cmd.Cmd):
         if inputs[0] not in self._classes:
             print("** class doesn't exist **")
             return False
-        if len(inputs) == 1:
+        if len(inputs) < 2:
             print("** instance id missing **")
             return False
         instance = f"{inputs[0]}.{inputs[1]}"
