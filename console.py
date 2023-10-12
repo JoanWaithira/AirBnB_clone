@@ -24,7 +24,9 @@ class HBNBCommand(cmd.Cmd):
         '''
         This method handles unknown command syntaxes.
         Here it's meant to handle commands of the format:
-            $ <class name>.<method>
+
+            $ <class name>.<method>(<arguments>)
+
         for pre-specified commands.
 
         Supported commands:
@@ -54,6 +56,10 @@ class HBNBCommand(cmd.Cmd):
                 print("*** Unknown syntax: {line}")
         else:
             print(f"*** Unknown syntax: {line}")
+
+    def emptyline(self):
+        ''' Handling of no argument entered. '''
+        print(end="")
 
     def do_EOF(self, line=None):
         ''' Exits the console when EOF is encountered. '''
