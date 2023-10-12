@@ -197,7 +197,7 @@ class HBNBCommand(cmd.Cmd):
                     inputs[3] = float(inputs[3])
                 except ValueError:
                     inputs[3] = str(inputs[3])
-            setattr(storage.all()[instance], data[2], data[3])
+            setattr(storage.all()[instance], inputs[2], inputs[3])
             storage.save()
         except (ValueError, TypeError):
             return False
