@@ -70,9 +70,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class name is missing **")
             return None
         inputs = shlex.split(raw_string)
-        if not inputs[1]:
+        if len (inputs) < 2:
             print("** instance id missing **")
-            return False
+            return None
         if inputs[0] not in self._classes:
             print("** class doesn't exist **")
             return False
