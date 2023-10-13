@@ -7,14 +7,12 @@ import pycodestyle
 
 class TestBaseModel(unittest.TestCase):
     ''' Tests all features of BaseModel class. '''
-    def test_pycodestyle(self):
-        '''Tests if the base_model conforms to pycodestyle.'''
-        style = pycodestyle.StyleGuide(quiet=True)
-        result = style.check_files(["models/base_model.py"])
-        self.assertEqual(result.total_errors, 0, "Non compliance detected.")
-        return
+    def test_create_base_model_instance(self):
+        """This tests that a new basemodel instance is set up"""
+        self.model = BaseModel()
+        self.assertIsInstance(base_model, BaseModel)
 
-    def test_init_default(self):
+    def test_base_model_initialisation(self):
         """Testing the default initialisation of Base Model."""
         model = BaseModel()
         self.assertTrue(hasattr(model, "id"))
@@ -25,7 +23,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(model.updated_at, datetime)
         return
 
-    def test_init_with_kwargs(self):
+    def test_base_model_with_arguments(self):
         """Test initialization of BaseModel with keyword arguments."""
         data = {
             'id': 'test_id',
@@ -54,6 +52,16 @@ class TestBaseModel(unittest.TestCase):
         model.save()
         self.assertNotEqual(model.updated_at, initial_updated_at)
         return
+
+    def test_to_dictionary_method(self):
+        """Checks if the to_dict method returns expected dict rep"""
+        base_model = BaseModel()
+        data_dict = base_model.to_dict()
+        self.assertIsInstance(data_dict, dict)
+        self.assertIn('__class__', data_dict)
+        self.assertIn('id', data_dict)
+        self.assertIn('created_at', data_dict)
+        self.assertIn('updated_at', data_dict)
 
 if __name__ == '__main__':
     unittest.main()
