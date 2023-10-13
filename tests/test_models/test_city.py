@@ -17,8 +17,9 @@ class TestCity(unittest.TestCase):
         city.name = "Nairobi"
         self.assertEqual(city.state_id, "KE")
         self.assertEqual(city.name, "Nairobi")
+
     def test_inheritance_from_base_model(self):
-        """Checks if the city class inherits from BaseModel"""
+        """Tests if the city class inherits from BaseModel"""
         self.assertIsNotNone(city.id)
         self.assertIsNotNone(city.created_at)
         self.assertIsNotNone(city.updated_at)
