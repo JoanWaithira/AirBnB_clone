@@ -5,6 +5,12 @@ from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """ A class representing a city"""
+    """ A class representing a city
+
+        Attributes:
+     state_id (str): The ID of the state
+     name (str): The name of the city.
+     """
+
     state_id = ""
     name = ""
