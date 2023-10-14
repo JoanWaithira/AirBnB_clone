@@ -20,6 +20,8 @@ class TestCity(unittest.TestCase):
 
     def test_inheritance_from_base_model(self):
         """Tests if the city class inherits from BaseModel"""
+        city =  City()
+        self.assertIsNotNone(city.id)
         self.assertIsNotNone(city.created_at)
         self.assertIsNotNone(city.updated_at)
 

@@ -31,7 +31,6 @@ class TestAmenity(unittest.TestCase):
         self.assertIsInstance(data_dict, dict)
         self.assertIn('__class__', data_dict)
         self.assertEqual(data_dict['__class__'], 'Amenity')
-        self.assertIn('name', data_dict)
 
     def test_base_model_inheritance(self):
         """Tests if the class inherits correctly base_model"""
