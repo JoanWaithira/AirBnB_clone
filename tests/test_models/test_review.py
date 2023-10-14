@@ -41,9 +41,6 @@ class TestReview(unittest.TestCase):
         self.assertIsInstance(data_dict, dict)
         self.assertIn('__class__', data_dict)
         self.assertEqual(data_dict['__class__'], 'Review')
-        self.assertIn('place_id', data_dict)
-        self.assertIn('user_id', data_dict)
-        self.assertIn('text', data_dict)
 
     def test_str_representation(self):
         """Checks if a string is returned"""

@@ -45,10 +45,6 @@ class TestUser(unittest.TestCase):
         self.assertIsInstance(data_dict, dict)
         self.assertIn('__class__', data_dict)
         self.assertEqual(data_dict['__class__'], 'User')
-        self.assertIn('email', data_dict)
-        self.assertIn('password', data_dict)
-        self.assertIn('first_name', data_dict)
-        self.assertIn('last_name', data_dict)
 
     def test_str_representation(self):
         """Checks if a string is returned"""

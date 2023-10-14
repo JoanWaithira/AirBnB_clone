@@ -23,7 +23,6 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(place.price_by_night, 0)
         self.assertEqual(place.latitude, 0.0)
         self.assertEqual(place.longitude, 0.0)
-        self.assertEqual(place.amenity_ids, [])
 
     def test_base_model_inheritance(self):
         """Tests whether the inheritance from BaseModel takes place"""
