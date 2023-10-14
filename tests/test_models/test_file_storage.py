@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """Defines Test Cases"""
+
+
 import unittest
 from models.user import User
 from models.city import City
