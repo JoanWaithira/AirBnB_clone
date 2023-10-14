@@ -8,6 +8,10 @@ import models
 
 
 class BaseModel:
+    """
+    This is the primary class from which all inherit from
+    """
+
     def __init__(self, *args, **kwargs):
         ''' Initializes an instance of BaseModel. '''
         if len(kwargs) == 0:
