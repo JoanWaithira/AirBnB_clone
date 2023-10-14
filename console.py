@@ -249,6 +249,9 @@ class HBNBCommand(cmd.Cmd):
         Usage: $ count <class name>
         '''
         count = 0
+        if not classname:
+            print("** class name missing **")
+            return False
         classname = shlex.split(classname)[0]
 
         if classname not in self._classes:
