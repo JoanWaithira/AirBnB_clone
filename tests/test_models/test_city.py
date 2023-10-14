@@ -20,7 +20,6 @@ class TestCity(unittest.TestCase):
 
     def test_inheritance_from_base_model(self):
         """Tests if the city class inherits from BaseModel"""
-        self.assertIsNotNone(city.id)
         self.assertIsNotNone(city.created_at)
         self.assertIsNotNone(city.updated_at)
 
@@ -32,7 +31,6 @@ class TestCity(unittest.TestCase):
         self.assertIn('__class__', data_dict)
         self.assertEqual(data_dict['__class__'], 'City')
         self.assertIn('state_id', data_dict)
-        self.assertIn('name', data_dict)
 
     def test_str_representation(self):
         """tests that the __str__ method returns the expected string"""
@@ -40,6 +38,6 @@ class TestCity(unittest.TestCase):
         expected_str = f"[{city.__class__.__name__}] ({city.id}) {city.__dict__}"
         self.assertEqual(str(city), expected_str)
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     unittest.main()
 

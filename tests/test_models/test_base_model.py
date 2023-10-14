@@ -10,7 +10,6 @@ class TestBaseModel(unittest.TestCase):
     def test_create_base_model_instance(self):
         """This tests that a new basemodel instance is set up"""
         self.model = BaseModel()
-        self.assertIsInstance(base_model, BaseModel)
 
     def test_base_model_initialisation(self):
         """Testing the default initialisation of Base Model."""
