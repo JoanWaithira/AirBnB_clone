@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """ This model defines the user class and is inheriting from Base model"""
 
 from models.base_model import BaseModel

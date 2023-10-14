@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """This module defines the place class that inherits from the base model"""
+
 from models.base_model import BaseModel
 
 
