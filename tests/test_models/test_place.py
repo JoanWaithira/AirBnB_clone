@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-"""Defines Test Cases"""
 import unittest
 from models.place import Place
 from models.base_model import BaseModel

@@ -1,7 +1,3 @@
-#!/usr/bin/python3
-"""Defines Test Cases"""
-
-
 import unittest
 import json
 from models.city import City

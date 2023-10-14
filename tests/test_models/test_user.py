@@ -1,7 +1,3 @@
-#!/usr/bin/python3
-"""Defines Test Cases"""
-
-
 import models
 import unittest
 from datetime import datetime
