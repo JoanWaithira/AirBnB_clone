@@ -272,7 +272,7 @@ class HBNBCommand(cmd.Cmd):
             classname (str): Name of the class of object to be updated.
             line (str): Unprocessed string as recieved from the console.
         '''
-        dictionary = re.findall(r"({.*})", line)
+        dictionary = re.findall("({.*})", line)
         dictionary[0] = dictionary[0].replace("\'", "\"")
         inputs = json.loads(dictionary[0])
         grouped_strings = re.findall("(\".*?\")", line)
