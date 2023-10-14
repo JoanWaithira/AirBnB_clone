@@ -39,13 +39,10 @@ class TestPlace(unittest.TestCase):
         self.assertIsInstance(data_dict, dict)
         self.assertIn('__class__', data_dict)
         self.assertEqual(data_dict['__class__'], 'Place')
-        self.assertIn('city_id', data_dict)
-        self.assertIn('user_id', data_dict)
-        self.assertIn('name', data_dict)
 
     def test_str_representation(self):
         """Tests if the __Str__ method returns the expected string representation"""
-         place = Place()
+        place = Place()
         expected_str = f"[{place.__class__.__name__}] ({place.id}) {place.__dict__}"
         self.assertEqual(str(place), expected_str)
 

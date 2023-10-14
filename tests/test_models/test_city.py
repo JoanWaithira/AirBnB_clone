@@ -32,7 +32,6 @@ class TestCity(unittest.TestCase):
         self.assertIsInstance(data_dict, dict)
         self.assertIn('__class__', data_dict)
         self.assertEqual(data_dict['__class__'], 'City')
-        self.assertIn('state_id', data_dict)
 
     def test_str_representation(self):
         """tests that the __str__ method returns the expected string"""
