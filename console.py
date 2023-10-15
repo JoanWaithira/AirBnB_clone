@@ -92,12 +92,13 @@ class HBNBCommand(cmd.Cmd):
         if not classname:
             print("** class name missing **")
             return False
-        try:
-            new_object = eval(classname)()
-            print(new_object.id)
-            new_object.save()
-        except NameError:
+        inputs = shlex.split(classname)
+        if inputs[0] not in self._classes:
             print("** class doesn't exist **")
+            return False
+        new_object = eval(inputs[0])()
+        print(new_object.id)
+        new_object.save()
 
     def do_show(self, raw_string):
         '''
@@ -118,12 +119,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class name is missing **")
             return None
         inputs = shlex.split(raw_string)
-        if len(inputs) == 1:
-            print("** instance id missing **")
-            return None
         if inputs[0] not in self._classes:
             print("** class doesn't exist **")
             return False
+        if len(inputs) == 1:
+            print("** instance id missing **")
+            return None
         instance = f"{inputs[0]}.{inputs[1]}"
         if instance not in storage.all():
             print("** no instance found **")
@@ -150,6 +151,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return False
         inputs = shlex.split(raw_string)
+        if inputs[0] not in self._classes:
+            print("** class doesn't exist **")
+            return False
         if len(inputs) == 1:
             print("** instance id missing **")
             return False
