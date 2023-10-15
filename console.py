@@ -18,7 +18,13 @@ from models.state import State
 class HBNBCommand(cmd.Cmd):
     ''' This class creates the project console and defines it's behaviors. '''
     prompt = '(hbnb)'
-    _classes = ["State", "User", "BaseModel", "Place", "Review", "Amenity"]
+    _classes = ["Amenity",
+                "BaseModel",
+                "City",
+                "Place",
+                "Review",
+                "State",
+                "User"]
 
     def default(self, line):
         '''
