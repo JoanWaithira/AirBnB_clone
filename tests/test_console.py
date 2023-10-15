@@ -71,13 +71,13 @@ class TestConsoleDocsAndSimpleInputs(unittest.TestCase):
         '''Checking the case of no input.'''
         with patch('sys.stdout', new=StringIO()) as c:
             HBNBCommand().onecmd("")
-            self.assertEqual("", c.getvalue.strip())
+            self.assertEqual("", c.getvalue().strip())
 
     def test_unknown_command(self):
         '''Checking the case of unknown command.'''
         with patch('sys.stdout', new=StringIO()) as c:
             HBNBCommand().onecmd("Devoir")
-            self.assertEqual("*** Unknown syntax: Devoir", c.getvalue.strip())
+            self.assertEqual("*** Unknown syntax: Devoir", c.getvalue().strip())
 
 
 class TestHelp(unittest.TestCase):
