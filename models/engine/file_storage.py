@@ -40,7 +40,8 @@ class FileStorage:
         Args:
             obj : Object to be stored into the __objects dictionary.
         '''
-        self.__objects.update({f"{obj.__class__.__name__}.{obj.id}": obj})
+#       self.__objects.update({f"{obj.__class__.__name__}.{obj.id}": obj})
+        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
 
     def save(self):
         '''
