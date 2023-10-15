@@ -5,15 +5,18 @@ from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """ A class representing a city
+    """
+    A class representing a city
 
-        Attributes:
-     state_id (str): The ID of the state
-     name (str): The name of the city.
-     """
+    Attributes:
+    state_id (str): The ID of the state
+    name (str): The name of the city.
+    """
     state_id = ""
     name = ""
 
     def __init__(self, *args, **kwargs):
         """ Constructor """
+        self.state_id = ""
+        self.name = ""
         super().__init__(self, *args, **kwargs)
