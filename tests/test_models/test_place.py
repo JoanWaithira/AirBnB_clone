@@ -43,8 +43,10 @@ class TestPlace(unittest.TestCase):
     def test_str_representation(self):
         """Tests if the __str__ method return."""
         place = Place()
-        expected_str = f"[{place.__class__.__name__}] \
-                ({place.id}) {place.__dict__}"
+        expected_str = "[{}] ({}) {}".format(
+                place.__class__.__name__,
+                place.id,
+                place.__dict__)
         self.assertEqual(str(place), expected_str)
 
 

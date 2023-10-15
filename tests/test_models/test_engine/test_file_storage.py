@@ -8,6 +8,7 @@ import os
 import sys
 import unittest
 import pycodestyle
+import models
 from models import storage
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -29,7 +30,7 @@ class EngineStorageDocTest(unittest.TestCase):
         Check all the doc of the Amenity Class
         """
         # module documentation
-        module = len(file_storage.__doc__)
+        module = len(models.engine.file_storage.__doc__)
         self.assertGreater(module, 0)
 
         # class documentation
@@ -90,12 +91,11 @@ class TestFileStorage(unittest.TestCase):
 
     def test_file_storage_attributes(self):
         """Checks the default attributes of the FileStorage class."""
-        fs = FileStorage()
-        self.assertIn("_FileStorage__objects", fs.__dict__)
-        self.assertIsInstance(fs._FileStorage__objects, dict)
-        self.assertIn("_FileStorage__file_path", fs.__dict__)
-        self.assertIsInstance(fs._FileStorage__file_path, str)
-        self.assertEqual(fs._FileStorage__file_path, "file.json")
+        self.assertIn("_FileStorage__objects", FileStorage.__dict__)
+        self.assertIsInstance(FileStorage._FileStorage__objects, dict)
+        self.assertIn("_FileStorage__file_path", FileStorage.__dict__)
+        self.assertIsInstance(FileStorage._FileStorage__file_path, str)
+        self.assertEqual(FileStorage._FileStorage__file_path, "file.json")
 
     def test_all_method(self):
         """Checks if the all method returns a dictionary."""
@@ -105,16 +105,17 @@ class TestFileStorage(unittest.TestCase):
 
     def test_new_method(self):
         """checks if the new method correctly stores an object"""
-        newBaseModel = BaseModel()
         newAmenity = Amenity()
+        newBaseModel = BaseModel()
         newCity = City()
+        newPlace = Place()
         newReview = Review()
         newState = State()
         newUser = User()
-        for classname in ["BaseModel." + newBaseModel.id,
-                          "Amenity." + newAmenity.id,
-                          "Place." + newPlace.id,
+        for classname in ["Amenity." + newAmenity.id,
+                          "BaseModel." + newBaseModel.id,
                           "City." + newCity.id,
+                          "Place." + newPlace.id,
                           "Review." + newReview.id,
                           "State." + newState.id,
                           "User." + newUser.id]:

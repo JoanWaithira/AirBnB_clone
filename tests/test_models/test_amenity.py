@@ -42,8 +42,10 @@ class TestAmenity(unittest.TestCase):
     def test_str_representation(self):
         """Test if to str method is executed properly"""
         amenity = Amenity()
-        expected_str = f"[{amenity.__class__.__name__}] \
-                ({amenity.id}) {amenity.__dict__}"
+        expected_str = "[{}] ({}) {}".format(
+                amenity.__class__.__name__,
+                amenity.id,
+                amenity.__dict__)
         self.assertEqual(str(amenity), expected_str)
 
 

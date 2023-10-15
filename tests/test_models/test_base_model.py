@@ -42,8 +42,7 @@ class TestBaseModel(unittest.TestCase):
     def test_str_representation(self):
         """Test the __str__ method of BaseModel."""
         model = BaseModel(id='test_id', name='Test Model')
-        expected_str = "[BaseModel] (test_id)\
-                {'id': 'test_id', 'name': 'Test Model'}"
+        expected_str = "[BaseModel] (test_id) {'id': 'test_id', 'name': 'Test Model'}"
         self.assertEqual(str(model), expected_str)
         return
 

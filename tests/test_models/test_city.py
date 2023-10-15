@@ -38,8 +38,10 @@ class TestCity(unittest.TestCase):
     def test_str_representation(self):
         """tests that the __str__ method returns the expected string"""
         city = City()
-        expected_str = f"[{city.__class__.__name__}] \
-                ({city.id}) {city.__dict__}"
+        expected_str = "[{}] ({}) {}".format(
+                city.__class__.__name__,
+                city.id,
+                city.__dict__)
         self.assertEqual(str(city), expected_str)
 
 

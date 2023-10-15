@@ -40,8 +40,10 @@ class TestState(unittest.TestCase):
     def test_str_representation(self):
         """Tests whether the str method returns a string"""
         state = State()
-        expected_str = f"[{state.__class__.__name__}] \
-                ({state.id}) {state.__dict__}"
+        expected_str = "[{}] ({}) {}".format(
+                state.__class__.__name__,
+                state.id,
+                state.__dict__)
         self.assertEqual(str(state), expected_str)
 
 
