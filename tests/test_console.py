@@ -2,12 +2,13 @@
 
 '''This doc_strlen is to be used to test the console module.'''
 
+import pycodestyle
 import unittest
 import console
 from console import HBNBCommand
 
 
-class TestConsole(unittest.TestCase):
+class TestConsoleDocsAndSimpleInputs(unittest.TestCase):
     '''Unittests for the console module.'''
 
     def test_doc(self):
@@ -32,7 +33,7 @@ class TestConsole(unittest.TestCase):
 
         doc_strlen = len(HBNBCommand.do_destroy.__doc__)
         self.assertGreater(doc_strlen, 0)
-        
+
         doc_strlen = len(HBNBCommand.do_show.__doc__)
         self.assertGreater(doc_strlen, 0)
 
@@ -53,3 +54,81 @@ class TestConsole(unittest.TestCase):
 
         doc_strlen = len(HBNBCommand.dict_update.__doc__)
         self.assertGreater(doc_strlen, 0)
+
+    def test_pycodestyle(self):
+        '''Checking for pycodestyle 2.8.x compliance.'''
+        style = pycodestyle.StyleGuide(quiet = True)
+        result = style.check_files(['console.py'])
+        self.assertEqual(result.total_errors, 0, "Code style errors found.")
+
+    def test_prompt(self):
+        '''Testing the prompt.'''
+        self.assertEqual("(hbnb)", HBNBCommand.prompt)
+
+    def test_emptyline(self):
+        '''Checking the case of no input.'''
+        with unittest.mock.patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("")
+            self.assertEqual("", c.getvalue.strip())
+
+    def test_unknown_command(self):
+        '''Checking the case of unknown command.'''
+        with unittest.mock.patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("Devoir")
+            self.assertEqual("*** Unknown syntax: Devoir", c.getvalue.strip())
+
+
+class TestHelp(unittest.TestCase):
+    '''Test the output of help.'''
+
+    def test_help_create(self):
+        '''Test the help output of help for create.'''
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("help create")
+            self.assertGreater(c.getvalue().strip(), 0)
+
+    def test_help_all(self):
+        '''Test the help output of help for all.'''
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("help all")
+            self.assertGreater(c.getvalue().strip(), 0)
+
+    def test_help_destroy(self):
+        '''Test the help output of help for destroy.'''
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("help destroy")
+            self.assertGreater(c.getvalue().strip(), 0)
+
+    def test_help_show(self):
+        '''Test the help output of help for show.'''
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("help show")
+            self.assertGreater(c.getvalue().strip(), 0)
+
+    def test_help_update(self):
+        '''Test the help output of help for update.'''
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("help update")
+            self.assertGreater(c.getvalue().strip(), 0)
+
+    def test_help_EOF(self):
+        '''Test the help output of help for EOF.'''
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("help EOF")
+            self.assertGreater(c.getvalue().strip(), 0)
+
+    def test_help_count(self):
+        '''Test the help output of help for count.'''
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("help count")
+            self.assertGreater(c.getvalue().strip(), 0)
+
+    def test_help_quit(self):
+        '''Test the help output of help for quit.'''
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("help quit")
+            self.assertGreater(c.getvalue().strip(), 0)
+
+
+if __name__ == "__main__":
+    unittest.main()
