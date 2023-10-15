@@ -249,7 +249,7 @@ class HBNBCommand(cmd.Cmd):
 
         if inputs[2] == "id" or inputs[2] == "created_at" or\
                 inputs[2] == "updated_at":
-                    return False
+            return False
         if inputs[3].isnumeric():
             inputs[3] = int(inputs[3])
         elif is_float(inputs[3]):

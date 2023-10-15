@@ -144,7 +144,7 @@ class TestHelp(unittest.TestCase):
 class TestFunctions(unittest.TestCase):
     '''Test all the functions.'''
 
-    def set_up(self):
+    def setUp(self):
         '''Prepare the location for testing.'''
         try:
             os.rename("file.json", "tmp.json")
@@ -152,7 +152,7 @@ class TestFunctions(unittest.TestCase):
             pass
         FileStorage._FileStorage__objects = {}
 
-    def tear_down(self):
+    def tearDown(self):
         '''After test cleanup.'''
         try:
             os.remove("file.json")
