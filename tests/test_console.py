@@ -9,7 +9,14 @@ from io import StringIO
 import os
 import console
 from console import HBNBCommand
+from models.amenity import Amenity
+from models.base_model import BaseModel
+from models.city import City
 from models.engine.file_storage import FileStorage
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class TestConsoleDocsAndSimpleInputs(unittest.TestCase):
@@ -157,6 +164,156 @@ class TestFunctions(unittest.TestCase):
             pass
         FileStorage._FileStorage__objects = {}
 
+    def test_all(self):
+        '''Testing the all function.'''
+
+        output = "** class doesn't exist **"
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("all NotAClass")
+            self.assertEqual(output, c.getvalue().strip())
+
+        '''
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("create Amenity")
+        '''
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("create BaseModel")
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("create City")
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("create Place")
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("create Review")
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("create State")
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("create User")
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand().onecmd("all")
+            instances = c.getvalue().strip()
+
+        all_classes = ["Amenity",
+                       "BaseModel",
+                       "City",
+                       "Place",
+                       "Review",
+                       "State",
+                       "User"]
+        for classname in all_classes:
+            self.assertIn(classname, instances)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("all Amenity")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "Amenity":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("all BaseModel")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "BaseModel":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("all City")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "City":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("all Place")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "Place":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("all Review")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "Review":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("all State")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "State":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("all User")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "User":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("Amenity.all()")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "Amenity":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("BaseModel.all()")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "BaseModel":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("City.all()")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "City":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("Place.all()")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "Place":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("Review.all()")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "Review":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("State.all()")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "State":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
+        with patch('sys.stdout', new=StringIO()) as c:
+            HBNBCommand.onecmd("User.all()")
+            instances = c.getvalue().strip()
+        for classname in all_classes:
+            if classname != "User":
+                self.assertNotIn(classname, instances)
+            else:
+                self.assertIn(classname, instance)
 
 
 if __name__ == "__main__":
