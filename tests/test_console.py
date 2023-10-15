@@ -6,8 +6,10 @@ import pycodestyle
 import unittest
 from unittest.mock import patch
 from io import StringIO
+import os
 import console
 from console import HBNBCommand
+from models.engine.file_storage import FileStorage
 
 
 class TestConsoleDocsAndSimpleInputs(unittest.TestCase):
@@ -130,6 +132,31 @@ class TestHelp(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as c:
             HBNBCommand().onecmd("help quit")
             self.assertGreater(len(c.getvalue().strip()), 0)
+
+
+class TestFunctions(unittest.TestCase):
+    '''Test all the functions.'''
+
+    def set_up(self):
+        '''Prepare the location for testing.'''
+        try:
+            os.rename("file.json", "tmp.json")
+        except IOError:
+            pass
+        FileStorage._FileStorage__objects = {}
+
+    def tear_down(self):
+        '''After test cleanup.'''
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp.json", "file.json")
+        except IOError:
+            pass
+        FileStorage._FileStorage__objects = {}
+
 
 
 if __name__ == "__main__":
