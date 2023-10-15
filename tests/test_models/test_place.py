@@ -2,6 +2,7 @@ import unittest
 from models.place import Place
 from models.base_model import BaseModel
 
+
 class TestPlace(unittest.TestCase):
     """Unit tests for the Place class."""
 
@@ -32,7 +33,7 @@ class TestPlace(unittest.TestCase):
         self.assertIsNotNone(place.updated_at)
 
     def test_to_dict_method(self):
-        """Tests whether to dict_method returns the expected dictionary representation"""
+        """Tests the to_dict return."""
         place = Place()
         data_dict = place.to_dict()
         self.assertIsInstance(data_dict, dict)
@@ -40,10 +41,12 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(data_dict['__class__'], 'Place')
 
     def test_str_representation(self):
-        """Tests if the __Str__ method returns the expected string representation"""
+        """Tests if the __str__ method return."""
         place = Place()
-        expected_str = f"[{place.__class__.__name__}] ({place.id}) {place.__dict__}"
+        expected_str = f"[{place.__class__.__name__}] \
+                ({place.id}) {place.__dict__}"
         self.assertEqual(str(place), expected_str)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -3,6 +3,7 @@ import models
 import os
 from models.review import Review
 
+
 class TestReview(unittest.TestCase):
 
     def test_create_review_instance(self):
@@ -45,9 +46,10 @@ class TestReview(unittest.TestCase):
     def test_str_representation(self):
         """Checks if a string is returned"""
         review = Review()
-        expected_str = f"[{review.__class__.__name__}] ({review.id}) {review.__dict__}"
+        expected_str = f"[{review.__class__.__name__}] \
+                ({review.id}) {review.__dict__}"
         self.assertEqual(str(review), expected_str)
+
 
 if __name__ == '__main__':
     unittest.main()
-

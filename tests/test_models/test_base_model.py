@@ -32,15 +32,18 @@ class TestBaseModel(unittest.TestCase):
         }
         model = BaseModel(**data)
         self.assertEqual(model.id, 'test_id')
-        self.assertEqual(model.created_at, datetime.fromisoformat('2023-01-01T00:00:00'))
-        self.assertEqual(model.updated_at, datetime.fromisoformat('2023-01-02T00:00:00'))
+        self.assertEqual(model.created_at, datetime.fromisoformat(
+            '2023-01-01T00:00:00'))
+        self.assertEqual(model.updated_at, datetime.fromisoformat(
+            '2023-01-02T00:00:00'))
         self.assertEqual(model.name, 'Test Model')
         return
 
     def test_str_representation(self):
         """Test the __str__ method of BaseModel."""
         model = BaseModel(id='test_id', name='Test Model')
-        expected_str = "[BaseModel] (test_id) {'id': 'test_id', 'name': 'Test Model'}"
+        expected_str = "[BaseModel] (test_id)\
+                {'id': 'test_id', 'name': 'Test Model'}"
         self.assertEqual(str(model), expected_str)
         return
 

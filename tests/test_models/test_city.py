@@ -3,6 +3,7 @@ import json
 from models.city import City
 from models.base_model import BaseModel
 
+
 class TestCity(unittest.TestCase):
     """Unit test for the City Class. """
 
@@ -10,6 +11,7 @@ class TestCity(unittest.TestCase):
         """Tests if an instance can be created in the city class"""
         city = City()
         self.assertIsInstance(city, City)
+
     def test_city_properties(self):
         """Tests that the initial strings of name and id are empty """
         city = City()
@@ -20,7 +22,7 @@ class TestCity(unittest.TestCase):
 
     def test_inheritance_from_base_model(self):
         """Tests if the city class inherits from BaseModel"""
-        city =  City()
+        city = City()
         self.assertIsNotNone(city.id)
         self.assertIsNotNone(city.created_at)
         self.assertIsNotNone(city.updated_at)
@@ -36,9 +38,10 @@ class TestCity(unittest.TestCase):
     def test_str_representation(self):
         """tests that the __str__ method returns the expected string"""
         city = City()
-        expected_str = f"[{city.__class__.__name__}] ({city.id}) {city.__dict__}"
+        expected_str = f"[{city.__class__.__name__}] \
+                ({city.id}) {city.__dict__}"
         self.assertEqual(str(city), expected_str)
+
 
 if __name__ == "__main__":
     unittest.main()
-

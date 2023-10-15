@@ -4,8 +4,9 @@ from datetime import datetime
 from time import sleep
 from models.user import User
 
-class TestUser(unittest.TestCase):
 
+class TestUser(unittest.TestCase):
+    '''Tests for the class user.'''
     def test_create_user_instance(self):
         """Checks the instance can be created"""
         user = User()
@@ -49,9 +50,9 @@ class TestUser(unittest.TestCase):
     def test_str_representation(self):
         """Checks if a string is returned"""
         user = User()
-        expected_str = f"[{user.__class__.__name__}] ({user.id}) {user.__dict__}"
-        self.assertEqual(str(user), expected_str)
+        expected = f"[{user.__class__.__name__}] ({user.id}) {user.__dict__}"
+        self.assertEqual(str(user), expected)
+
 
 if __name__ == '__main__':
     unittest.main()
-

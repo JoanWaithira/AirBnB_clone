@@ -68,7 +68,7 @@ class TestConsoleDocsAndSimpleInputs(unittest.TestCase):
 
     def test_pycodestyle(self):
         '''Checking for pycodestyle 2.8.x compliance.'''
-        style = pycodestyle.StyleGuide(quiet = True)
+        style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['console.py'])
         self.assertEqual(result.total_errors, 0, "Code style errors found.")
 
@@ -85,8 +85,8 @@ class TestConsoleDocsAndSimpleInputs(unittest.TestCase):
     def test_unknown_command(self):
         '''Checking the case of unknown command.'''
         with patch('sys.stdout', new=StringIO()) as c:
-            HBNBCommand().onecmd("Devoir")
-            self.assertEqual("*** Unknown syntax: Devoir", c.getvalue().strip())
+            HBNBCommand().onecmd("Draco")
+            self.assertEqual("*** Unknown syntax: Draco", c.getvalue().strip())
 
 
 class TestHelp(unittest.TestCase):

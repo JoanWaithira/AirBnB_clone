@@ -4,6 +4,7 @@ import json
 from models.amenity import Amenity
 from models.base_model import BaseModel
 
+
 class TestAmenity(unittest.TestCase):
     """Unit tests for the Amenity class."""
 
@@ -11,7 +12,6 @@ class TestAmenity(unittest.TestCase):
         """Tests if an instance of Amenity class"""
         amenity = Amenity()
         self.assertIsInstance(amenity, Amenity)
-
 
     def test_amenity_properties(self):
         """Test if the initial value is an empty string"""
@@ -42,8 +42,10 @@ class TestAmenity(unittest.TestCase):
     def test_str_representation(self):
         """Test if to str method is executed properly"""
         amenity = Amenity()
-        expected_str = f"[{amenity.__class__.__name__}] ({amenity.id}) {amenity.__dict__}"
+        expected_str = f"[{amenity.__class__.__name__}] \
+                ({amenity.id}) {amenity.__dict__}"
         self.assertEqual(str(amenity), expected_str)
+
 
 if __name__ == '__main__':
     unittest.main()
