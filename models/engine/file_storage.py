@@ -17,12 +17,10 @@ from models.user import User
 
 
 class FileStorage:
+    '''For data storage.'''
+
     __file_path = "file.json"
     __objects = {}
-
-    def __init__(self):
-        '''Initializes new FileStorage instance.'''
-        return
 
     def all(self):
         '''
@@ -42,9 +40,7 @@ class FileStorage:
         Args:
             obj : Object to be stored into the __objects dictionary.
         '''
-        key = "{}.{}".format(obj.__class__.__name__, obj.id)
-
-        self.__objects[key] = obj
+        self.__objects.update({f"{obj.__class__.__name__}.{obj.id}":obj})
 
     def save(self):
         '''
