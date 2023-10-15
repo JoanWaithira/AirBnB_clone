@@ -163,6 +163,12 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, classname=None):
         '''
         Prints string representation of instances based or not on classname.
+        Usage: $ all <class name>
+
+        If class name is absent, all available instances are printed.
+
+        Exceptions:
+            If class name does not exist, ** class doesn't exist ** is printed.
         '''
         instance_list = []
         if not classname:
@@ -237,18 +243,15 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return False
 
-        try:
-            if inputs[3].isnumeric():
-                inputs[3] = int(inputs[3])
-            else:
-                try:
-                    inputs[3] = float(inputs[3])
-                except ValueError:
-                    inputs[3] = str(inputs[3])
-            setattr(storage.all()[instance], inputs[2], inputs[3])
-            storage.save()
-        except (ValueError, TypeError):
-            return False
+        if inputs[2] == "id" or inputs[2] == "created_at" or\
+                inputs[2] == "updated_at":
+                    return False
+        if inputs[3].isnumeric():
+            inputs[3] = int(inputs[3])
+        elif is_float(inputs[3]):
+            inputs[3] = float(inputs[3])
+        setattr(storage.all()[instance], inputs[2], inputs[3])
+        storage.save()
 
     def do_count(self, classname):
         '''
