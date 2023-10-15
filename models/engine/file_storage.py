@@ -59,7 +59,7 @@ class FileStorage:
         as instances.
         '''
         try:
-            with open(self.__file_path, "r+", encoding="utf-8") as file:
+            with open(self.__file_path, "r", encoding="utf-8") as file:
                 dictionary = json.load(file)
                 for key, value in dictionary.items():
                     self.__objects[key] = eval(value['__class__'])(**value)
