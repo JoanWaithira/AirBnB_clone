@@ -1,4 +1,4 @@
-#!/usr/bin env
+#!/usr/bin/env python3
 
 '''This module tests the city module.'''
 
