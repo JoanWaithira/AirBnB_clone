@@ -60,9 +60,6 @@ class TestConsoleDocsAndSimpleInputs(unittest.TestCase):
         doc_strlen = len(HBNBCommand().default.__doc__)
         self.assertGreater(doc_strlen, 0)
 
-        doc_strlen = len(HBNBCommand().is_float.__doc__)
-        self.assertGreater(doc_strlen, 0)
-
         doc_strlen = len(HBNBCommand().dict_update.__doc__)
         self.assertGreater(doc_strlen, 0)
 

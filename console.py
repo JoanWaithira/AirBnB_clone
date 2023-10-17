@@ -189,24 +189,6 @@ class HBNBCommand(cmd.Cmd):
                     instance_list.append(instance.__str__())
         print(instance_list)
 
-    @staticmethod
-    def is_float(self, string):
-        '''
-        Checks if a string is a floating point number.
-
-        Args:
-            string (str): String to be tested.
-
-        Returns:
-            True if value is a float.
-            False if value is not a float.
-        '''
-        try:
-            float(string)
-            return True
-        except ValueError:
-            return False
-
     def do_update(self, arg_string):
         '''
         Changes an attribute of an instance based on classname and id.
@@ -253,8 +235,11 @@ class HBNBCommand(cmd.Cmd):
             return False
         if inputs[3].isnumeric():
             inputs[3] = int(inputs[3])
-        elif self.is_float(inputs[3]):
-            inputs[3] = float(inputs[3])
+        else:
+            try:
+                inputs[3] = float(inputs[3])
+            except Exception:
+                pass
         setattr(storage.all()[instance], inputs[2], inputs[3])
         storage.save()
 
