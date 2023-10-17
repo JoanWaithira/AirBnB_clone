@@ -249,14 +249,14 @@ class HBNBCommand(cmd.Cmd):
         Usage: $ count <class name>
         '''
         count = 0
-        if not classname:
-            print("** class name missing **")
-            return False
+#       if not classname:
+#           print("** class name missing **")
+#           return False
         classname = shlex.split(classname)[0]
 
-        if classname not in self._classes:
-            print("** class doesn't exist **")
-            return False
+#       if classname not in self._classes:
+#           print("** class doesn't exist **")
+#           return False
 
         for instance in storage.all().values():
             if classname == instance.__class__.__name__:
