@@ -278,7 +278,8 @@ class HBNBCommand(cmd.Cmd):
         grouped_strings = re.findall("(\".*?\")", line)
         id_string = grouped_strings[0].replace("\"", "")
         for key, val in inputs.items():
-            self.do_update(classname + " " + id_string + key + " " + str(val))
+            self.do_update(classname + " " + id_string + " " + key + " " +
+                           str(val))
 
 
 if __name__ == "__main__":
