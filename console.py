@@ -277,7 +277,7 @@ class HBNBCommand(cmd.Cmd):
         inputs = json.loads(dictionary[0])
         grouped_strings = re.findall("(\".*?\")", line)
         id_string = grouped_strings[0].replace("\"", "")
-        for key, value in inputs.items():
+        for key, val in inputs.items():
             self.do_update(classname + " " + id_string + key + " " + str(val))
 
 
