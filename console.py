@@ -116,15 +116,15 @@ class HBNBCommand(cmd.Cmd):
             raw_string (str):String containing classname, and id.
         '''
         if not raw_string:
-            print("** class name is missing **")
-            return None
+            print("** class name missing **")
+            return False
         inputs = shlex.split(raw_string)
         if inputs[0] not in self._classes:
             print("** class doesn't exist **")
             return False
         if len(inputs) == 1:
             print("** instance id missing **")
-            return None
+            return False
         instance = f"{inputs[0]}.{inputs[1]}"
         if instance not in storage.all():
             print("** no instance found **")
