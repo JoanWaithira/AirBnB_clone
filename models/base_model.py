@@ -15,7 +15,7 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         ''' Initializes an instance of BaseModel. '''
         if len(kwargs) == 0:
-            current_time = datetime.now()
+            current_time = datetime.utcnow()
             self.id = str(uuid.uuid4())
             self.created_at = current_time
             self.updated_at = current_time
@@ -40,7 +40,7 @@ class BaseModel:
 
     def save(self):
         ''' Updates the updated_at attribute with the current_time. '''
-        self.updated_at = datetime.now()
+        self.updated_at = datetime.utcnow()
         models.storage.save()
 
     def to_dict(self):
