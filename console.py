@@ -189,7 +189,7 @@ class HBNBCommand(cmd.Cmd):
         print(instance_list)
 
     @staticmethod
-    def is_float(string):
+    def is_float(self, string):
         '''
         Checks if a string is a floating point number.
 
@@ -252,7 +252,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         if inputs[3].isnumeric():
             inputs[3] = int(inputs[3])
-        elif is_float(inputs[3]):
+        elif self.is_float(inputs[3]):
             inputs[3] = float(inputs[3])
         setattr(storage.all()[instance], inputs[2], inputs[3])
         storage.save()
