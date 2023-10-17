@@ -160,6 +160,7 @@ class HBNBCommand(cmd.Cmd):
         instance = f"{inputs[0]}.{inputs[1]}"
         try:
             del storage.all()[instance]
+            storage.save()
         except Exception:
             print("** no instance found **")
             return False
