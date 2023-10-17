@@ -48,8 +48,9 @@ class FileStorage:
         (path: __file_path).
         '''
         dictionary = {}
-        for key in self.__objects.keys():
-            dictionary[key] = self.__objects[key].to_dict()
+        for key, value in self.__objects.items():
+            if isinstance(obj, BaseModel):
+                dictionary[key] = self.__objects[key].to_dict()
         with open(self.__file_path, "w+", encoding="utf-8") as file:
             json.dump(dictionary, file)
 
