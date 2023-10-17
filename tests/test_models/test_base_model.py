@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+'''Tests the base_model module.'''
 
 import unittest
 from models import base_model

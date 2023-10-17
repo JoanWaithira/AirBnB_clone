@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+'''This module tests the user module.'''
+
 import models
 import unittest
 from datetime import datetime

@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+'''This module tests the state module.'''
+
 import unittest
 from models.state import State
 from models.base_model import BaseModel

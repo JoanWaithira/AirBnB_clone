@@ -1,4 +1,5 @@
 #!/usr/bin env
+
 '''This module tests the city module.'''
 
 import unittest

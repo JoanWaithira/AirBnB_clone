@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+'''This module tests the amenity module.'''
+
 import unittest
 from datetime import datetime
 import json
