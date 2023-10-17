@@ -55,8 +55,8 @@ class HBNBCommand(cmd.Cmd):
             inputs = re.sub(regex, r"\2 \1 \3", line)
             inputs = shlex.split(inputs)
             if inputs[0] in functions.keys():
-                if inputs[0] == "update" and "{" in line and "}" in line:
-                    self.dict_update(inputs[1], line)
+                if inputs[0] == "update":
+                    self.do_update(line)
                 else:
                     functions[inputs[0]](' '.join(inputs[1:]))
             else:
@@ -189,13 +189,13 @@ class HBNBCommand(cmd.Cmd):
                     instance_list.append(instance.__str__())
         print(instance_list)
 
-    def do_update(self, arg_string):
+    def do_update(self, arg):
         '''
         Changes an attribute of an instance based on classname and id.
         Usage: $ update <class name> <id> <attribute name> "<attribute values>"
 
         Args:
-            arg_string (string): This contains args to be parsed.
+            arg (string): This contains args to be parsed.
 
         Exceptions:
             If class name is missing, ** class name missing ** is printed.
@@ -207,40 +207,45 @@ class HBNBCommand(cmd.Cmd):
             If the value of the attributename doesn't exist, print
                 ** value missing **
         '''
-        if not arg_string:
+        arglist = self.arg_handler(arg)
+        obj_dict = storage.all()
+
+        if len(arglist) == 0:
             print("** class name missing **")
             return False
-        arg_string = arg_string.replace(',', "")
-        inputs = shlex.split(arg_string)
-
-        if inputs[0] not in self._classes:
+        if arglist[0] not in HBNBCommand._classes:
             print("** class doesn't exist **")
             return False
-        if len(inputs) == 1:
+        if len(arglist) == 1:
             print("** instance id missing **")
             return False
-        instance = f"{inputs[0]}.{inputs[1]}"
-        if instance not in storage.all():
+        if "{}.{}".format(arglist[0], arglist[1]) not in obj_dict.keys():
             print("** no instance found **")
             return False
-        if len(inputs) == 2:
+        if len(arglist) == 2:
             print("** attribute name missing **")
             return False
-        if len(inputs) == 3:
+        if len(arglist) == 3 and not isinstance(eval(arglist[2]), dict):
             print("** value missing **")
             return False
 
-        if inputs[2] == "id" or inputs[2] == "created_at" or\
-                inputs[2] == "updated_at":
-            return False
-        if inputs[3].isnumeric():
-            inputs[3] = int(inputs[3])
-        else:
-            try:
-                inputs[3] = float(inputs[3])
-            except Exception:
-                pass
-        setattr(storage.all()[instance], inputs[2], inputs[3])
+        if len(arglist) == 4:
+            obj = obj_dict["{}.{}".format(arglist[0], arglist[1])]
+            if arglist[2] in obj.__class__.__dict__.keys():
+                type_value = type(obj.__class__.__dict__[arglist[2]])
+                obj.__dict__[arglist[2]] = type_value(arglist[3])
+            else:
+                obj.__dict__[arglist[2]] = arglist[3]
+        elif isinstance(eval(arglist[2]), dict):
+            obj = obj_dict["{}.{}".format(arglist[0], arglist[1])]
+            for key, value in eval(arglist[2]).items():
+                if (key in obj.__class__.__dict__.keys() and
+                        type(obj.__class__.__dict__[key]) in {
+                            str, int, float}):
+                    type_value = type(obj.__class__.__dict__[key])
+                    obj.__dict__[key] = type_value(value)
+                else:
+                    obj.__dict__[key] = value
         storage.save()
 
     def do_count(self, classname):
@@ -263,23 +268,29 @@ class HBNBCommand(cmd.Cmd):
                 count += 1
         print(f"{count}")
 
-    def dict_update(self, classname, line):
-        '''
-        Performs the update method on an item passed with a dictionary
-            of attribute/value pairs.
-
+    @staticmethod
+    def arg_handler(arg):
+        """Parse an argument into a list of tokens.
         Args:
-            classname (str): Name of the class of object to be updated.
-            line (str): Unprocessed string as recieved from the console.
-        '''
-        dictionary = re.findall("({.*})", line)
-        dictionary[0] = dictionary[0].replace("\'", "\"")
-        inputs = json.loads(dictionary[0])
-        grouped_strings = re.findall("(\".*?\")", line)
-        id_string = grouped_strings[0].replace("\"", "")
-        for key, val in inputs.items():
-            self.do_update(classname + " " + id_string + key + " " + str(val))
-
+            arg (str): The argument to parse.
+        Returns:
+            list: A list of tokens.
+        """
+        curlybraces = re.search(r"\{(.*?)\}", arg)
+        sq_brackets = re.search(r"\[(.*?)\]", arg)
+        if curlybraces is None:
+            if sq_brackets is None:
+                return [i.strip(",") for i in split(arg)]
+            else:
+                tokens_list = split(arg[:sq_brackets.span()[0]])
+                parsed_tokens = [i.strip(",") for i in tokens_list]
+                parsed_tokens.append(sq_brackets.group())
+                return parsed_tokens
+        else:
+            tokens_list = shlex.split(arg[:curlybraces.span()[0]])
+            parsed_tokens = [i.strip(",") for i in tokens_list]
+            parsed_tokens.append(curlybraces.group())
+            return parsed_tokens
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
