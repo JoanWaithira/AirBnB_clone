@@ -1,6 +1,6 @@
 footer {
 	background-color: #00FF00;
-	position: fixed;
+	position: absolute;
 	bottom: 0;
 	height: 60px;
 	width: 100%;
