@@ -4,5 +4,6 @@ footer {
 	height: 60px;
 	width: 100%;
 	display: flex;
+	position: fixed;
 	border-top: 1px solid #CCCCCC;
 }

@@ -8,3 +8,10 @@ header{
 	position: fixed;
 }
 
+header .logo {
+    width: 142px;
+    height: 60px;
+    background: url("../images/logo.png") no-repeat center;
+    padding-left: 20px;
+}
+
