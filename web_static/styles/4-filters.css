@@ -13,6 +13,7 @@ button {
     height: 48px;
     width: 20%;
     float: right;
+    border: none;
     border-radius: 4px;
     margin-top: 11px;
     margin-right: 30px;
