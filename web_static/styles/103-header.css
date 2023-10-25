@@ -1,0 +1,23 @@
+header {
+    width: 100%;
+    height: 70px;
+    background-color: white;
+    border-bottom: 1px solid;
+    border-bottom-color: #CCCCCC;
+}
+
+.logo {
+    width: 140px;
+    height: 70px;
+    background: url("../images/logo.png") no-repeat center;
+    padding-left: 20px;
+}
+
+@media screen and (max-width: 777px)
+{
+    .logo
+    {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

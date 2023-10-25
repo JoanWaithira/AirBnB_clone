@@ -1,0 +1,216 @@
+.filters{
+    height: 70px;
+    background-color: white;
+    width: 100%;
+    border : 1px solid;
+    border-color: #DDDDDD;
+    border-radius: 4px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+section.filters button {
+    font-size: 18px;
+    background-color: #a01418;
+    color:  white;
+    height:48px;
+    width: 20%;
+    border: none;
+    border-radius: 4px;
+    margin-right: 30px;
+    margin-left: auto;
+    opacity: 1;
+}
+
+section.filters .locations, .amenities {
+    height: 100%;
+    width: 25%;
+    margin-left: 40px;
+}
+
+section.filters .locations{
+    border-right: 1px solid;
+    border-color: #DDDDDD;
+}
+
+section.filters .locations h3, .amenities h3{
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+section.filters .locations h4, .amenities h4{
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.popover{
+    display: none;
+    position: relative;
+    background-color: #FAFAFA;
+    width: 100%;
+    left: -41px;
+    margin-top: -2px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    border: 1px solid;
+    border-color: #DDDDDD;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.locations:hover .popover {
+    display: block;
+}
+
+.amenities:hover .popover {
+    display: block;
+}
+
+.popover ul, li{
+    list-style-type: none;
+}
+
+.popover h2{
+    margin-top: 0px;
+}
+
+.popover ul {
+    margin-left: -10px;
+    margin-top: -16px;
+    margin-bottom: 20px;
+}
+
+.popover li {
+    margin-bottom: 5px;
+}
+
+section.filters button:hover {
+    opacity: 0.9 ;
+}
+
+@media screen and (max-width: 1050px)
+{
+    .filters
+    {
+        height: 70px;
+        background-color: white;
+        width: 90%;
+        border : 1px solid;
+        border-color: #DDDDDD;
+        border-radius: 4px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    section.filters .locations, .amenities {
+        height: 100%;
+        min-width: 145px;
+        margin-left: 40px;
+    }
+}
+
+@media screen and (max-width: 652px)
+{
+    .filters
+    {
+        width: 375px;
+        flex-flow: column wrap;
+    }
+    section.filters button 
+    {
+    font-size: 18px;
+    background-color: #a01418;
+    color: white;;
+    height:48px;
+    width: 20%;
+    border: none;
+    border-radius: 4px;
+    margin-right: 30px;
+    margin-left: auto;
+    opacity: 1;
+    position: absolute;
+    margin-top: 70px;
+    }
+    .filters
+    {
+        height: 118px;
+    }
+}
+
+@media screen and (max-width: 321px)
+{
+    .filters
+    {
+        width: 318px;
+        flex-flow: column wrap;
+        height: 118px;
+    }
+    section.filters button 
+    {
+    font-size: 18px;
+    background-color: #a01418;
+    color: white;;
+    height:48px;
+    width: 20%;
+    border: none;
+    border-radius: 4px;
+    margin-right: 30px;
+    margin-left: auto;
+    opacity: 1;
+    position: absolute;
+    margin-top: 70px;
+    }
+    section.filters .locations 
+    {
+        min-width: 100px;
+        width: 160px;
+        margin-left: 0px;
+    }
+    section.filters .locations h3, section.filters .locations h4
+    {
+        margin-left: 20px;
+    }
+    section.filters .amenities 
+    {
+        min-width: 100px;
+        width: 160px;
+        margin-left: 0px;
+    }
+    section.filters .amenities h3, section.filters .amenities h4
+    {
+        margin-left: 20px;
+    }
+    .amenities .popover
+    {
+    display: none;
+    position: relative;
+    background-color: #FAFAFA;
+    width: 115px;
+    left: 0px;
+    margin-top: -2px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    border: 1px solid;
+    border-color: #DDDDDD;
+    border-radius: 4px;
+    z-index: 1;
+    }
+    .locations .popover
+    {
+    display: none;
+    position: relative;
+    background-color: #FAFAFA;
+    width: 120px;
+    left: 0px;
+    margin-top: -2px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    border: 1px solid;
+    border-color: #DDDDDD;
+    border-radius: 4px;
+    z-index: 1;
+    }
+}
+
