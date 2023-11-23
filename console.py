@@ -6,6 +6,7 @@ import cmd
 import json
 import re
 import shlex
+from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.amenity import Amenity
@@ -78,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         instance = f"{inputs[0]}.{inputs[1]}"
         try:
-            print(models.storage.all()[instance])
+            print(storage.all()[instance])
         except Exception:
             print("** no instance found **")
             return False
@@ -109,7 +110,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         instance = f"{inputs[0]}.{inputs[1]}"
         try:
-            del models.storage.all()[instance]
+            del storage.all()[instance]
         except Exception:
             print("** no instance found **")
             return False
@@ -121,13 +122,13 @@ class HBNBCommand(cmd.Cmd):
         '''
         instance_list = []
         if not classname:
-            for instance in models.storage.all().values():
+            for instance in storage.all().values():
                 instance_list.append(instance.__str__())
         else:
             if classname not in self._classes:
                 print("** class doesn't exist **")
                 return False
-            for instance in models.storage.all().values():
+            for instance in storage.all().values():
                 if instance.__class__.__name__ == classname:
                     instance_list.append(instance.__str__())
         print(instance_list)
@@ -183,7 +184,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return False
         instance = f"{inputs[0]}.{inputs[1]}"
-        if instance not in models.storage.all():
+        if instance not in storage.all():
             print("** no instance found **")
             return False
         if len(inputs) == 2:
@@ -197,7 +198,7 @@ class HBNBCommand(cmd.Cmd):
             inputs[3] = int(inputs[3])
         elif is_float(inputs[3]):
             inputs[3] = float(inputs[3])
-        setattr(models.storage.all()[instance], data[2], data[3])
+        setattr(storage.all()[instance], data[2], data[3])
         return
 
 
